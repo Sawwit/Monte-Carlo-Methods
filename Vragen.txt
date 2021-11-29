@@ -1,0 +1,4 @@
+Efficientere methode van force berekenen (matrix vermenigvuldiging in hogere dim?)
+
+
+Vermenigvuldiging van 4-D matrices kan een nieuwe 4-D matrix geven door sommatie over 2 indices (bij beiden matrices dezelfde) Maar welke twee? En moeten we dit doen of for-loops gebruiken?
