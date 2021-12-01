@@ -2,3 +2,11 @@ Efficientere methode van force berekenen (matrix vermenigvuldiging in hogere dim
 
 
 Vermenigvuldiging van 4-D matrices kan een nieuwe 4-D matrix geven door sommatie over 2 indices (bij beiden matrices dezelfde) Maar welke twee? En moeten we dit doen of for-loops gebruiken?
+
+numpy functie eentje opschuiven. shift functie voor neighbour sum. 
+
+lambda andere waarde misschien: Deze lambda is beetje out of the blue -> Waar ligt de focus. Meerdere lambda mogelijk. want fysischse correlatie lengte proberen constant te houden. Enige is vrije veld -> je gaat geen mass scale vinden.
+
+Detailed balance: Kan via plotje en heatbath. Even goed over nadenken -> liefst quantitative check. 
+
+Ook autocorrelatie opslaan in cpu tijd en stappen. 
