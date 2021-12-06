@@ -10,7 +10,7 @@ num_sites= width**4
 equil_sweeps = 1000
 measure_sweeps = 1
 measurements = 800
-eps = 0.015
+eps = 0.01
 tau = 100
 
 
@@ -48,8 +48,7 @@ def potential_v(x,lamb):
 #             potential_v(newphi[site[0],site[1],site[2],site[3]],lamb) - potential_v(phi[site[0],site[1],site[2],site[3]],lamb) )
 #     return 
 def scalar_action(phi,lamb, kappa):
-    A = potential_v(phi, lamb) - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1) 
-         + np.roll(phi, 1, axis = 2) + np.roll(phi, -1, axis = 2) + np.roll(phi, 1, axis = 3) + np.roll(phi, -1, axis = 3)) * phi
+    A = potential_v(phi, lamb) - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, 1, axis = 2) + np.roll(phi, 1, axis = 3)) * phi
     return np.sum(A)
 
 def scalar_ham_diff(phi,pi,newphi,newpi,lamb,kappa):
@@ -84,10 +83,12 @@ def I_phi(phi,pi,eps):
 def leapfrog(phi,pi,eps,tau,kappa):
     a=phi
     b=pi
+
     for _ in range(tau):
         pi=I_pi(phi,pi,lamb,kappa,eps/2)
         phi=I_phi(phi,pi,eps)
         pi=I_pi(phi,pi,lamb,kappa,eps/2)
+
     
     return phi,pi,a,b
 
@@ -105,7 +106,7 @@ def scalar_HMC_step(phi,lamb,kappa,eps,tau):
 def run_scalar_MH(phi,lamb,kappa,eps,tau,n):
     '''Perform n Metropolis-Hastings updates on state phi and return number of accepted transtions.'''
     total_accept = 0
-    for _ in range(n):
+    for i in range(n):
         catch = 0
         catch, phi = scalar_HMC_step(phi,lamb,kappa,eps,tau)
         total_accept += catch
@@ -128,11 +129,16 @@ def main():
     mean_magn = []
     for kappa in tqdm(kappas):
         phi_state = np.zeros((width,width,width,width))
-        catch, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,equil_sweeps)
+        phi_old = np.copy(phi_state)
+        acceptions, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,equil_sweeps)
+        print(acceptions/equil_sweeps)
         magnetizations = np.empty(measurements)
+        acceptions = 0
         for i in range(measurements):
-            catch, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,measure_sweeps)
+            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,measure_sweeps)
+            acceptions += accept
             magnetizations[i] = np.mean(phi_state)
+        print(acceptions/measurements)
         mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
         mean_magn.append([mean,err])
         print("kappa = {:.2f}, |m| = {:.3f} +- {:.3f}".format(kappa,mean,err))
