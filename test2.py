@@ -38,6 +38,11 @@ def scalar_acttion_diff(phi,newphi,lamb,kappa):
     
     return difference  
 
+def scalar_action(phi,lamb, kappa):
+    A = potential_v(phi, lamb) - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1) 
+         + np.roll(phi, 1, axis = 2) + np.roll(phi, -1, axis = 2) + np.roll(phi, 1, axis = 3) + np.roll(phi, -1, axis = 3)) * phi
+    return np.sum(A)
+
 def scalar_ham_diff(phi,pi,newphi,newpi,lamb,kappa):
     ham_difference = 0.5* np.sum(newpi**2 - pi**2)
 

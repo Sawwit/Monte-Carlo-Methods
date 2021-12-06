@@ -2,51 +2,39 @@ import numpy as np
 import matplotlib.pyplot as plt
 rng = np.random.default_rng() 
 from tqdm import tqdm
+import argparse
+import time
+import json
 
-width = 3
-lamb = 1.5
-kappas = np.linspace(0.08,0.18,11)
-num_sites= width**4
-equil_sweeps = 1000
-measure_sweeps = 1
-measurements = 800
-eps = 0.01
-tau = 100
 
+class NumpyEncoder(json.JSONEncoder):
+    """ Special json encoder for numpy types """
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+
+# width = 4
+# lamb = 1.5
+# kappas = np.linspace(0.08,0.18,11)
+# num_sites= width**4
+# equil_sweeps = 1000
+# measure_sweeps = 1
+# measurements = 800
+# eps = 0.15
+# tau = 10
+autocovruns = 150
 
 """ Code from the lectures"""
 def potential_v(x,lamb):
     '''Compute the potential function V(x).'''
     return lamb*(x*x-1)*(x*x-1)+x*x
 
-# def neighbor_sum(phi,s):
-#     '''Compute the sum of the state phi on all 8 neighbors of the site s.'''
-#     w = len(phi)
 
-#     return (phi[(s[0]+1)%w,s[1],s[2],s[3]] + phi[(s[0]-1)%w,s[1],s[2],s[3]] +
-#             phi[s[1],(s[1]+1)%w,s[2],s[3]] + phi[s[1],(s[1]-1)%w,s[2],s[3]] +
-#             phi[s[0],s[1],(s[2]+1)%w,s[3]] + phi[s[0],s[1],(s[2]-1)%w,s[3]] +
-#             phi[s[0],s[1],s[2],(s[3]+1)%w] + phi[s[0],s[1],s[2],(s[3]-1)%w] )
-
-# def scalar_action_diff_site(phi,pi,site,newphi,newpi,lamb,kappa):
-#     '''Compute the change in the hamiltonian when phi is changed to newphi.'''
-#     return (2 * kappa * neighbor_sum(phi,site) * (phi[site[0],site[1],site[2],site[3]] - newphi[site[0],site[1],site[2],site[3]]) +
-#             potential_v(newphi[site[0],site[1],site[2],site[3]],lamb) - potential_v(phi[site[0],site[1],site[2],site[3]],lamb) )
-
-# def scalar_acttion_diff(phi,pi,newphi,newpi,lamb,kappa):
-#     difference=0
-#     for i in range(width):
-#         for j in range(width):
-#             for k in range(width):
-#                 for l in range(width):
-#                     difference +=scalar_action_diff_site(phi,pi,[i,j,k,l],newphi,newpi,lamb,kappa)
-    
-#     return difference  
-
-# def scalar_acttion_diff(phi,pi,newphi,newpi,lamb,kappa):
-#     A = (2 * kappa * neighbor_sum(phi,site) * (phi[site[0],site[1],site[2],site[3]] - newphi[site[0],site[1],site[2],site[3]]) +
-#             potential_v(newphi[site[0],site[1],site[2],site[3]],lamb) - potential_v(phi[site[0],site[1],site[2],site[3]],lamb) )
-#     return 
 def scalar_action(phi,lamb, kappa):
     A = potential_v(phi, lamb) - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, 1, axis = 2) + np.roll(phi, 1, axis = 3)) * phi
     return np.sum(A)
@@ -62,17 +50,7 @@ def force(phi,kappa,lamb):
     F += 2*phi + 4*lamb*(phi**3) - 4*lamb*phi - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1) 
          + np.roll(phi, 1, axis = 2) + np.roll(phi, -1, axis = 2) + np.roll(phi, 1, axis = 3) + np.roll(phi, -1, axis = 3))
     return F
-    
-
-
-    # F= np.zeros((width,width,width,width))
-    # for i in range(width):
-    #     for j in range(width):
-    #         for k in range(width):
-    #             for l in range(width):
-    #                 F[i,j,k,l]= 2*phi[i,j,k,l] + 4*lamb*(phi[i,j,k,l]**2-1)*phi[i,j,k,l]-2*kappa*neighbor_sum(phi,[i,j,k,l])
-
-    # return F                
+      
 
 def I_pi(phi,pi,lamb,kappa,eps):
     return pi - eps*force(phi,kappa,lamb)
@@ -121,32 +99,121 @@ def batch_estimate(data,observable,num_batches):
     return np.mean(values), np.std(values)/np.sqrt(num_batches-1)
 
 
+def sample_autocovariance(x,tmax):
+    '''Compute the autocorrelation of the time series x for t = 0,1,...,tmax-1.'''
+    x_shifted = x - np.mean(x)
+    return np.array([np.dot(x_shifted[:len(x)-t],x_shifted[t:])/len(x) for t in range(tmax)])
+
+def find_correlation_time(x,tmax):
+    '''Return the index of the first entry that is smaller than autocov[0]/e.'''
+    autocov = sample_autocovariance(x,tmax)
+    return np.where(autocov < np.exp(-1)*autocov[0])[0][0]
+
+# use the argparse package to parse command line arguments
+parser = argparse.ArgumentParser(description= 'Measures the average field value of the scalar field.')
+parser.add_argument('-w',type= int, help='Lattice size W')
+parser.add_argument('-ki',type=float, help='Starting value for Kappa')
+parser.add_argument('-kf',type=float, help='End value for Kappa')
+parser.add_argument('-ka',type=int, help='Amount of Kappas')
+parser.add_argument('-l', type=float, help ='lambda')
+parser.add_argument('-e', type=int, default=1000, help='Number E of equilibration sweeps')
+parser.add_argument('-m', type=int, default=800, help='Number M of sweeps per measurement')
+parser.add_argument('-o', type=int, default=30, help='Time in seconds between file outputs')
+parser.add_argument('-ep', type=float, default = 0.15, help = 'Stepsize of leapfrog integrator')
+parser.add_argument('-tau',type=float,default=10,help='discretization steps of leapfrog integrator')
+parser.add_argument('-f', help='Output filename')
+
+args = parser.parse_args()
+#Some Sanity checks
+if args.w is None or args.w < 1:
+    parser.error("Please specify a positive lattice size!")
+if args.l is None or args.l <= 0.0:
+    parser.error("Please specify a positive lambda!")
+if args.e < 10:
+    parser.error("Need at least 10 equilibration sweeps")
+if args.tau*args.ep >=1.5 or args.tau*args.ep <=0.5:
+    print("The product of epsilon and tau is not close to the desired value of 1.")
+width = args.w
+kappas = np.linspace(args.ki,args.kf,args.ka)
+lamb = args.l
+equil_sweeps = args.e
+measurements = args.m
+eps = args.ep
+tau = args.tau
+
+# fix parameters
+if args.f is None:
+    # construct a filename from the parameters plus a timestamp (to avoid overwriting)
+    output_filename = "data_w{}_l{}_{}.json".format(width,lamb,time.strftime("%Y%m%d%H%M%S"))
+else:
+    output_filename = args.f
 
 
 
 
 def main():
-    mean_magn = []
-    for kappa in tqdm(kappas):
+    mean_magn = np.empty((len(kappas),5))
+    for index, kappa in tqdm(enumerate(kappas)):
+        start_time=time.time()
         phi_state = np.zeros((width,width,width,width))
-        phi_old = np.copy(phi_state)
         acceptions, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,equil_sweeps)
-        print(acceptions/equil_sweeps)
-        magnetizations = np.empty(measurements)
+        print("Acceptance rate for equilibration phase:", acceptions/equil_sweeps)
+        pre_magn = np.empty(autocovruns)
+        for i in range(autocovruns):
+            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,1)
+            pre_magn[i] = np.mean(phi_state)
+        cor_time = find_correlation_time(pre_magn,len(pre_magn))
+        print("Estimated correlation time: ",cor_time, " using ", autocovruns, " runs to determine as such")
+        cor_sweeps = int((1+cor_time)/2)
+        magnetizations = []
         acceptions = 0
-        for i in range(measurements):
-            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,measure_sweeps)
-            acceptions += accept
-            magnetizations[i] = np.mean(phi_state)
-        print(acceptions/measurements)
-        mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
-        mean_magn.append([mean,err])
-        print("kappa = {:.2f}, |m| = {:.3f} +- {:.3f}".format(kappa,mean,err))
+        measure_counter = 0
+        last_output_time = time.time()
+        while True:
+            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
+            magnetizations.append(np.mean(phi_state))
+            measure_counter += 1
+            
+
+            if measure_counter == measurements or time.time() - last_output_time > args.o:
+                mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
+                current_time = time.time()
+                run_time = int(current_time - start_time)
+                mean_magn[index] = np.array([kappa,mean,err,cor_time,run_time])
+                with open(output_filename,'w') as outfile:
+                    json.dump({ 
+                        'parameters': vars(args),
+                        'start_time': time.asctime(time.localtime(start_time)),
+                        'current_time': time.asctime(time.localtime(current_time)),
+                        'run_time_in_seconds': run_time,
+                        'measurements': measure_counter,
+                        'moves_per_measurement': cor_sweeps,
+                        'kappa_latest': mean_magn[index][0],
+                        'mean_latest': mean_magn[index][1],
+                        'err_latest': mean_magn[index][2],
+                        'correlation_time_latest': mean_magn[index][3],
+                        'full_results': mean_magn
+                        }, outfile, cls=NumpyEncoder)
+                if measure_counter == measurements:
+                    break
+                else:
+                    last_output_time = time.time()
+        # for i in range(measurements):
+        #     accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
+        #     acceptions += accept
+        #     magnetizations[i] = np.mean(phi_state)
+        # print("acceptance rate within the measurement phase: ", acceptions/(cor_sweeps*measurements))
+        # mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
+        # mean_magn.append([mean,err])
+        # current_time = time.time()
+        # run_time = int(current_time - start_time)
+        # print("run time in seconds:", run_time)
+        # print("kappa = {:.2f}, |m| = {:.3f} +- {:.3f}".format(kappa,mean,err))
         
-    plt.errorbar(kappas,[m[0] for m in mean_magn],yerr=[m[1] for m in mean_magn],fmt='-o')
+    plt.errorbar(kappas,[m[1] for m in mean_magn],yerr=[m[2] for m in mean_magn],fmt='-o')
     plt.xlabel(r"$\kappa$")
     plt.ylabel(r"$|m|$")
-    plt.title(r"Absolute field average on $3^4$ lattice, $\lambda = 1.5$")
+    plt.title(r"Absolute field average on $4^4$ lattice, $\lambda = 1.5$")
     plt.show()
 
 if __name__=="__main__":
