@@ -7,9 +7,9 @@ width = 3
 lamb = 1.5
 kappas = np.linspace(0.08,0.18,11)
 num_sites= width**4
-equil_sweeps = 400
+equil_sweeps = 1000
 measure_sweeps = 1
-measurements = 50
+measurements = 800
 eps = 0.015
 tau = 100
 
