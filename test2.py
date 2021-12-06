@@ -5,8 +5,8 @@ from tqdm import tqdm
 np.random.seed(0)
 
 width = 3
-phi= np.random.multivariate_normal([0 for _ in range(width)],np.eye(width), size= (width,width,width))
-new_phi = np.random.multivariate_normal([0 for _ in range(width)],np.eye(width), size= (width,width,width))
+phi= np.random.multivariate_normal([0 for _ in range(width)],np.eye(width), size= (width,width,width)) *300
+new_phi = np.random.multivariate_normal([0 for _ in range(width)],np.eye(width), size= (width,width,width)) *300
 lamb = 1.5
 kappa = 0.1
 
@@ -53,11 +53,33 @@ def force(phi,kappa,lamb):
 
     return F                
 
-print(scalar_acttion_diff(phi,new_phi,lamb,kappa))
+print("scalar differnence \n", scalar_acttion_diff(phi,new_phi,lamb,kappa))
+NS = 0
+for i in range(width):
+    for j in range(width):
+        for k in range(width):
+            for l in range(width):
+                NS+= neighbor_sum(phi,[i,j,k,l])
+print("phi \n", NS)
+pot = 0
+for i in range(width):
+    for j in range(width):
+        for k in range(width):
+            for l in range(width):
+                pot += potential_v(phi[i,j,k,l], lamb)
+print("phi, potential \n", pot)
 NS = 0
 for i in range(width):
     for j in range(width):
         for k in range(width):
             for l in range(width):
                 NS+= neighbor_sum(new_phi,[i,j,k,l])
-print(NS)
+print("newphi \n", NS)
+
+pot = 0
+for i in range(width):
+    for j in range(width):
+        for k in range(width):
+            for l in range(width):
+                pot += potential_v(new_phi[i,j,k,l], lamb)
+print("newphi, potential \n", pot)
