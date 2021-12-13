@@ -6,6 +6,8 @@ import argparse
 import time
 import json
 
+eps_taus = [(round(eps,2), round(1/eps)) for eps in np.linspace(0.1,0.01,20)]
+
 
 class NumpyEncoder(json.JSONEncoder):
     """ Special json encoder for numpy types """
@@ -18,17 +20,7 @@ class NumpyEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
-# width = 4
-# lamb = 1.5
-# kappas = np.linspace(0.08,0.18,11)
-# num_sites= width**4
-# equil_sweeps = 1000
-# measure_sweeps = 1
-# measurements = 800
-# eps = 0.0375
-# tau = 40
-autocovruns = 300
-
+        
 """ Code from the lectures"""
 def potential_v(x,lamb):
     '''Compute the potential function V(x).'''
@@ -97,23 +89,9 @@ def run_scalar_MH(phi,lamb,kappa,eps,tau,n):
 
     return total_accept, phi
 
-def batch_estimate(data,observable,num_batches):
-    '''Determine estimate of observable on the data and its error using batching.'''
-    batch_size = len(data)//num_batches
-    values = [observable(data[i*batch_size:(i+1)*batch_size]) for i in range(num_batches)]
-
-    return np.mean(values), np.std(values)/np.sqrt(num_batches-1)
 
 
-def sample_autocovariance(x,tmax):
-    '''Compute the autocorrelation of the time series x for t = 0,1,...,tmax-1.'''
-    x_shifted = x - np.mean(x)
-    return np.array([np.dot(x_shifted[:len(x)-t],x_shifted[t:])/len(x) for t in range(tmax)])
 
-def find_correlation_time(x,tmax):
-    '''Return the index of the first entry that is smaller than autocov[0]/e.'''
-    autocov = sample_autocovariance(x,tmax)
-    return np.where(autocov < np.exp(-1)*autocov[0])[0][0]
 
 # use the argparse package to parse command line arguments
 parser = argparse.ArgumentParser(description= 'Measures the average field value of the scalar field.')
@@ -155,73 +133,3 @@ else:
     output_filename = args.f
 
 
-
-
-def main():
-    mean_magn = np.empty((len(kappas),5))
-    for index, kappa in tqdm(enumerate(kappas)):
-        start_time=time.time()
-        phi_state = np.zeros((width,width,width,width))
-        acceptions, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,equil_sweeps)
-        print("Acceptance rate for equilibration phase:", acceptions/equil_sweeps)
-        pre_magn = np.empty(autocovruns)
-        for i in range(autocovruns):
-            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,1)
-            pre_magn[i] = np.mean(phi_state)
-        cor_time = find_correlation_time(pre_magn,len(pre_magn))
-        print("Estimated correlation time: ",cor_time, " using ", autocovruns, " runs to determine as such")
-        cor_sweeps = int((1+cor_time)/2)
-        magnetizations = []
-        acceptions = 0
-        measure_counter = 0
-        last_output_time = time.time()
-        while True:
-            accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
-            magnetizations.append(np.mean(phi_state))
-            measure_counter += 1
-            
-
-            if measure_counter == measurements or time.time() - last_output_time > args.o:
-                mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
-                current_time = time.time()
-                run_time = int(current_time - start_time)
-                mean_magn[index] = np.array([kappa,mean,err,cor_time,run_time])
-                with open(output_filename,'w') as outfile:
-                    json.dump({ 
-                        'parameters': vars(args),
-                        'start_time': time.asctime(time.localtime(start_time)),
-                        'current_time': time.asctime(time.localtime(current_time)),
-                        'run_time_in_seconds': run_time,
-                        'measurements': measure_counter,
-                        'moves_per_measurement': cor_sweeps,
-                        'kappa_latest': mean_magn[index][0],
-                        #'accp_rate_kappa': 
-                        'mean_latest': mean_magn[index][1],
-                        'err_latest': mean_magn[index][2],
-                        'correlation_time_latest': mean_magn[index][3],
-                        'full_results': mean_magn
-                        }, outfile, cls=NumpyEncoder)
-                if measure_counter == measurements:
-                    break
-                else:
-                    last_output_time = time.time()
-        # for i in range(measurements):
-        #     accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
-        #     acceptions += accept
-        #     magnetizations[i] = np.mean(phi_state)
-        # print("acceptance rate within the measurement phase: ", acceptions/(cor_sweeps*measurements))
-        # mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
-        # mean_magn.append([mean,err])
-        # current_time = time.time()
-        # run_time = int(current_time - start_time)
-        # print("run time in seconds:", run_time)
-        # print("kappa = {:.2f}, |m| = {:.3f} +- {:.3f}".format(kappa,mean,err))
-        
-    plt.errorbar(kappas,[m[1] for m in mean_magn],yerr=[m[2] for m in mean_magn],fmt='-o')
-    plt.xlabel(r"$\kappa$")
-    plt.ylabel(r"$|m|$")
-    plt.title(r"Absolute field average on $4^4$ lattice, $\lambda = 1.5$")
-    plt.show()
-
-if __name__=="__main__":
-    main()

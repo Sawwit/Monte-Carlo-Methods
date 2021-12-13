@@ -10,3 +10,28 @@ lambda andere waarde misschien: Deze lambda is beetje out of the blue -> Waar li
 Detailed balance: Kan via plotje en heatbath. Even goed over nadenken -> liefst quantitative check. 
 
 Ook autocorrelatie opslaan in cpu tijd en stappen. 
+
+
+
+
+
+
+
+_______________________________________________________
+13-12
+
+Idee: 
+- Check cluster
+- Finetuning script voor zowel heatbath als Hybrid van de parameters (delta en eps/tau)
+- Voor verslag: wanneer Hybrid t.o.v. Heatbath? 
+
+Vragen:
+- Parallelisatie ideeen? 
+- runtime vs autocorrelatie? Wat gebruiken voor efficientie?
+- Finetuning van eps/tau  idee 300 -> 
+
+
+
+Presentatie:
+Double counting
+matrix stap voor optimalisatie
