@@ -22,8 +22,13 @@ _______________________________________________________
 
 Idee: 
 - Check cluster
-- Finetuning script voor zowel heatbath als Hybrid van de parameters (delta en eps/tau)
-- Voor verslag: wanneer Hybrid t.o.v. Heatbath? 
+- Finetuning script voor zowel heatbath als Hybrid van de parameters (delta en eps/tau) -> Subtiele verandering in dit plan:
+1. Eerst los finetuning script, wat op basis van +- 300 sweeps bepaalt of "we wegkomen" van de initiele toestand voor meerdere sizes en lambdas
+2. Bepaling van Equilibation time door middel van meerdere initiele toestanden; begin met eps en tau van hiervoor. Wanneer hier vrij hoge time wordt gevonden (let op: doe time keer bepaalde constante) of significant verkeerde acceptatie percentage -> stap lager in eps en tau -> nieuwe bepaling Equilibration time
+3. Equilibratie fase is nu dus direct voltooid, maar mogelijk dat vorige stap wel verandering in gebruikte eps en tau meegeeft -> Dit doorgeven aan resultaten van finetuning script
+4. Finetuning op delta (rond de +- 300 sweeps -> zoek naar 50 procent acceptatie)
+5. Measurements voor beide uitvoeren in zelfde script -> Minder Equil fases benodigd, dus efficienter. 
+- Voor verslag: wanneer Hybrid t.o.v. Heatbath?  
 
 Vragen:
 - Parallelisatie ideeen? 
