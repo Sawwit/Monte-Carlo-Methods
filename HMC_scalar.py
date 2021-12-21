@@ -46,6 +46,7 @@ def scalar_ham_diff(phi,pi,newphi,newpi,lamb,kappa):
     return ham_difference + action_diff          
 
 def force(phi,kappa,lamb):
+    width = phi.shape[0]
     F = np.zeros((width,width,width,width))
     F += 2*phi + 4*lamb*(phi**3) - 4*lamb*phi - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1) 
          + np.roll(phi, 1, axis = 2) + np.roll(phi, -1, axis = 2) + np.roll(phi, 1, axis = 3) + np.roll(phi, -1, axis = 3))
@@ -58,7 +59,7 @@ def I_pi(phi,pi,lamb,kappa,eps):
 def I_phi(phi,pi,eps):
     return phi + eps*pi
 
-def leapfrog(phi,pi,eps,tau,kappa):
+def leapfrog(phi,pi,eps,tau,kappa, lamb):
     a=phi
     b=pi
 
@@ -72,8 +73,9 @@ def leapfrog(phi,pi,eps,tau,kappa):
 
 def scalar_HMC_step(phi,lamb,kappa,eps,tau):
     #Sample pi as random (normally distributed) noise for every lattice site
+    width  = phi.shape[0]
     pi = np.random.multivariate_normal(np.array([0 for _ in range(width)]),np.eye(width),(width,width,width))  
-    phi_new, pi_new, phi_old, pi_old = leapfrog(phi,pi,eps,tau,kappa)
+    phi_new, pi_new, phi_old, pi_old = leapfrog(phi,pi,eps,tau,kappa, lamb)
     delta_H = scalar_ham_diff(phi_old,pi_old,phi_new,pi_new,lamb,kappa)
     if delta_H <0 or rng.uniform() <np.exp(-delta_H):
         return 1, phi_new
@@ -116,54 +118,74 @@ def find_correlation_time(x,tmax):
     return np.where(autocov < np.exp(-1)*autocov[0])[0][0]
 
 # use the argparse package to parse command line arguments
-parser = argparse.ArgumentParser(description= 'Measures the average field value of the scalar field.')
-parser.add_argument('-w',type= int, help='Lattice size W')
-parser.add_argument('-ki',type=float, help='Starting value for Kappa')
-parser.add_argument('-kf',type=float, help='End value for Kappa')
-parser.add_argument('-ka',type=int, help='Amount of Kappas')
-parser.add_argument('-l', type=float, help ='lambda')
-parser.add_argument('-e', type=int, default=1000, help='Number E of equilibration sweeps')
-parser.add_argument('-m', type=int, default=800, help='Number M of sweeps per measurement')
-parser.add_argument('-o', type=int, default=30, help='Time in seconds between file outputs')
-parser.add_argument('-ep', type=float, default = 0.15, help = 'Stepsize of leapfrog integrator')
-parser.add_argument('-tau',type=int,default=10,help='discretization steps of leapfrog integrator')
-parser.add_argument('-f', help='Output filename')
 
-args = parser.parse_args()
-#Some Sanity checks
-if args.w is None or args.w < 1:
-    parser.error("Please specify a positive lattice size!")
-if args.l is None or args.l <= 0.0:
-    parser.error("Please specify a positive lambda!")
-if args.e < 10:
-    parser.error("Need at least 10 equilibration sweeps")
-if args.tau*args.ep >=1.5 or args.tau*args.ep <=0.5:
-    print("The product of epsilon and tau is not close to the desired value of 1.")
-width = args.w
-kappas = np.linspace(args.ki,args.kf,args.ka)
-lamb = args.l
-equil_sweeps = args.e
-measurements = args.m
-eps = args.ep
-tau = args.tau
+
+# args = parser.parse_args()
+# #Some Sanity checks
+# if args.w is None or args.w < 1:
+#     parser.error("Please specify a positive lattice size!")
+# if args.l is None or args.l <= 0.0:
+#     parser.error("Please specify a positive lambda!")
+# if args.e < 10:
+#     parser.error("Need at least 10 equilibration sweeps")
+# if args.tau*args.ep >=1.5 or args.tau*args.ep <=0.5:
+#     print("The product of epsilon and tau is not close to the desired value of 1.")
+# width = args.w
+# kappas = np.linspace(args.ki,args.kf,args.ka)
+# lamb = args.l
+# equil_sweeps = args.e
+# measurements = args.m
+# eps = args.ep
+# tau = args.tau
 
 # fix parameters
-if args.f is None:
-    # construct a filename from the parameters plus a timestamp (to avoid overwriting)
-    output_filename = "data_w{}_l{}_{}.json".format(width,lamb,time.strftime("%Y%m%d%H%M%S"))
-else:
-    output_filename = args.f
+# if args.f is None:
+#     # construct a filename from the parameters plus a timestamp (to avoid overwriting)
+#     output_filename = "data_w{}_l{}_{}.json".format(width,lamb,time.strftime("%Y%m%d%H%M%S"))
+# else:
+#     output_filename = args.f
+
+def equil_time_estimator(width, kappa, lamb, eps, tau, epsilon):
+    phi_state_zeros = np.random.multivariate_normal(np.array([0 for _ in range(width)]),np.eye(width),(width,width,width)) 
+    phi_state_ones = np.random.multivariate_normal(np.array([1 for _ in range(width)]),np.eye(width),(width,width,width)) 
+    magnetizations_ones = []
+    magnetizations_zeros = []
+    measure_counter = 0
+
+
+    while True:
+        _, phi_state_zeros = run_scalar_MH(phi_state_zeros,lamb,kappa,eps,tau,1)
+        _, phi_state_ones = run_scalar_MH(phi_state_ones,lamb,kappa,eps,tau,1)
+        magnetizations_ones.append(np.mean(phi_state_ones)) 
+        magnetizations_zeros.append(np.mean(phi_state_zeros))
+        measure_counter += 1
+        
+        if np.abs(np.abs(magnetizations_ones[-1]) - np.abs(magnetizations_zeros[-1])) <= epsilon :
+            break
+
+    return measure_counter, phi_state_zeros
 
 
 
-
-def main():
-    mean_magn = np.empty((len(kappas),5))
+def HMC_scalar(width, kappa_init, kappa_final, kappa_amount, lamb, eps, tau, measurements, output_time, output_filename, args):
+    kappas = np.linspace(kappa_init, kappa_final, kappa_amount)
+    mean_magn = np.empty((len(kappas),6))
+    equil_needed, phi_state = equil_time_estimator(width, kappa_init, lamb, eps, tau, 0.01)
+    print("determined sweeps needed for equil phase: ", equil_needed, "\n")
+    # phi_state = np.zeros((width,width,width,width))
+    acceptions, phi_state = run_scalar_MH(phi_state,lamb,kappa_init,eps,tau,equil_needed)
+    rate = acceptions/equil_needed
+    if rate < 0.4:
+        eps = eps - 0.005
+        tau = int(round(1/eps))
+        print("parameters have been adjusted")
+    print("Acceptance rate for equilibration phase:", rate)
     for index, kappa in tqdm(enumerate(kappas)):
-        start_time=time.time()
-        phi_state = np.zeros((width,width,width,width))
-        acceptions, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,equil_sweeps)
-        print("Acceptance rate for equilibration phase:", acceptions/equil_sweeps)
+        start_time=time.time()        
+        #Aantal sweeps runnen met de nieuwe kappa
+        if kappa != kappa_init:
+          _ , phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,50)
+        #correlation time bepalen
         pre_magn = np.empty(autocovruns)
         for i in range(autocovruns):
             accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,1)
@@ -179,13 +201,15 @@ def main():
             accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
             magnetizations.append(np.mean(phi_state))
             measure_counter += 1
+            acceptions += accept
             
 
-            if measure_counter == measurements or time.time() - last_output_time > args.o:
+            if measure_counter == measurements or time.time() - last_output_time > output_time:
                 mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
                 current_time = time.time()
+                acc_rate = acceptions/(cor_sweeps * measure_counter)
                 run_time = int(current_time - start_time)
-                mean_magn[index] = np.array([kappa,mean,err,cor_time,run_time])
+                mean_magn[index] = np.array([kappa,acc_rate,mean,err,cor_time,run_time])
                 with open(output_filename,'w') as outfile:
                     json.dump({ 
                         'parameters': vars(args),
@@ -195,7 +219,6 @@ def main():
                         'measurements': measure_counter,
                         'moves_per_measurement': cor_sweeps,
                         'kappa_latest': mean_magn[index][0],
-                        #'accp_rate_kappa': 
                         'mean_latest': mean_magn[index][1],
                         'err_latest': mean_magn[index][2],
                         'correlation_time_latest': mean_magn[index][3],
@@ -205,23 +228,12 @@ def main():
                     break
                 else:
                     last_output_time = time.time()
-        # for i in range(measurements):
-        #     accept, phi_state = run_scalar_MH(phi_state,lamb,kappa,eps,tau,cor_sweeps)
-        #     acceptions += accept
-        #     magnetizations[i] = np.mean(phi_state)
-        # print("acceptance rate within the measurement phase: ", acceptions/(cor_sweeps*measurements))
-        # mean, err = batch_estimate(np.abs(magnetizations),lambda x:np.mean(x),10)
-        # mean_magn.append([mean,err])
-        # current_time = time.time()
-        # run_time = int(current_time - start_time)
-        # print("run time in seconds:", run_time)
-        # print("kappa = {:.2f}, |m| = {:.3f} +- {:.3f}".format(kappa,mean,err))
+    
         
-    plt.errorbar(kappas,[m[1] for m in mean_magn],yerr=[m[2] for m in mean_magn],fmt='-o')
-    plt.xlabel(r"$\kappa$")
-    plt.ylabel(r"$|m|$")
-    plt.title(r"Absolute field average on $4^4$ lattice, $\lambda = 1.5$")
-    plt.show()
+    # plt.errorbar(kappas,[m[1] for m in mean_magn],yerr=[m[2] for m in mean_magn],fmt='-o')
+    # plt.xlabel(r"$\kappa$")
+    # plt.ylabel(r"$|m|$")
+    # plt.title(r"Absolute field average on $4^4$ lattice, $\lambda = 1.5$")
+    # plt.show()
 
-if __name__=="__main__":
-    main()
+    return phi_state

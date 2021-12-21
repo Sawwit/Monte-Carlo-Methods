@@ -1,0 +1,1 @@
+{"parameters": {"iw": 6, "hw": 6, "ki": 0.08, "kf": 0.18, "li": 1.5, "lf": 2.32, "la": 1, "s": 300, "f": null}, "start_time": "Mon Dec 20 12:56:30 2021", "current_time": "Mon Dec 20 12:58:02 2021", "run_time_in_seconds": 91, "current_width": 6, "current_lambda": 1.5, "fine_tuned_values": [[6, 1.5, 0.0055, 182]]}

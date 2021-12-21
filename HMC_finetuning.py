@@ -6,7 +6,7 @@ import argparse
 import time
 import json
 
-eps_taus = [(round(eps,2), round(1/eps)) for eps in np.linspace(0.12,0.01,12)]
+eps_taus = [(eps, round(1/eps)) for eps in np.linspace(0.12,0.01,12)]
 
 
 class NumpyEncoder(json.JSONEncoder):
@@ -39,7 +39,7 @@ def scalar_ham_diff(phi,pi,newphi,newpi,lamb,kappa):
 
 def force(phi,kappa,lamb):
     width = phi.shape[0]
-    F = np.zeros((width,width,width,width))
+    F = np.zeros((width,width, width, width)) 
     F += 2*phi + 4*lamb*(phi**3) - 4*lamb*phi - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1) 
          + np.roll(phi, 1, axis = 2) + np.roll(phi, -1, axis = 2) + np.roll(phi, 1, axis = 3) + np.roll(phi, -1, axis = 3))
     return F
@@ -78,7 +78,7 @@ def scalar_HMC_step(phi,lamb,kappa,eps,tau):
 def run_scalar_MH(phi,lamb,kappa,eps,tau,n):
     '''Perform n Metropolis-Hastings updates on state phi and return number of accepted transtions.'''
     total_accept = 0
-    if n > 999:
+    if n > 299:
         for i in tqdm(range(n)):
             catch = 0
             catch, phi = scalar_HMC_step(phi,lamb,kappa,eps,tau)
@@ -121,7 +121,7 @@ lambdas= np.linspace(args.li, args.lf, args.la)
 
 
 def other_k_checker(width,lamb,kappa_low,eps,tau,sweeps):
-    phi_state_low = np.zeros((width,width,width,width))
+    phi_state_low =  np.random.multivariate_normal(np.array([0 for _ in range(width)]),np.eye(width),(width,width,width)) 
     acceptions, phi_state_low = run_scalar_MH(phi_state_low,lamb,kappa_low,eps,tau,sweeps)
     acc_rate = acceptions/sweeps
     print(acc_rate, kappa_low)
@@ -142,14 +142,14 @@ def main():
                 if high_has_higher_acc == False:                    
                     tau = int(tau)
                     print('\n', index, " Finetuning step")
-                    phi_state_highk = np.zeros((width,width,width,width))
+                    phi_state_highk =  np.random.multivariate_normal(np.array([0 for _ in range(width)]),np.eye(width),(width,width,width)) 
                     kappa_high = args.kf
                     sweeps = args.s
                     acceptions = 0
                     acceptions, phi_state_highk = run_scalar_MH(phi_state_highk,lambd,kappa_high,eps,tau,sweeps)
                     acc_rate = acceptions/sweeps
                     print(acc_rate, kappa_high)
-                    if acc_rate > 0.15:
+                    if acc_rate > 0.60:
                         if acc_rate < 0.9:
                             other_acc, checker = other_k_checker(width,lambd, args.ki, eps, tau, sweeps)
                             if other_acc < acc_rate:
@@ -203,14 +203,14 @@ def main():
                 else:                  
                     tau = int(tau)
                     print('\n', index, " Finetuning step")
-                    phi_state_lowk = np.zeros((width,width,width,width))
+                    phi_state_lowk =  np.random.multivariate_normal(np.array([0 for _ in range(width)]),np.eye(width),(width,width,width)) 
                     kappa_low = args.ki
                     sweeps = args.s
                     acceptions = 0
                     acceptions, phi_state_lowk = run_scalar_MH(phi_state_lowk,lambd,kappa_low,eps,tau,sweeps)
                     acc_rate = acceptions/sweeps
                     print(acc_rate, kappa_low)
-                    if acc_rate > 0.15:
+                    if acc_rate > 0.60:
                         if acc_rate < 0.9:                  
                             other_acc, checker = other_k_checker(width,lambd, args.kf, eps, tau, sweeps)
                             if other_acc < acc_rate:
