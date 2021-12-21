@@ -40,3 +40,6 @@ Vragen:
 Presentatie:
 Double counting
 matrix stap voor optimalisatie
+
+
+batch script voorkeur: -w [nodename] (110 tm 113) 
