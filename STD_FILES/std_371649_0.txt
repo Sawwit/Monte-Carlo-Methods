@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "Cluster.py", line 61, in <module>
+    delta = float(deltas[filter_delta][0][2])
+IndexError: index 0 is out of bounds for axis 0 with size 0

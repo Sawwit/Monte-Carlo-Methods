@@ -1,0 +1,28 @@
+
+ Finetuning process for width:  10 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+Traceback (most recent call last):
+  File "HMC_finetuning.py", line 180, in <module>
+    main()
+  File "HMC_finetuning.py", line 147, in main
+    if low_k_checker(width,lambd, args.ki, eps, tau, sweeps):
+  File "HMC_finetuning.py", line 125, in low_k_checker
+    acceptions, phi_state_low = run_scalar_MH(phi_state_low,lamb,kappa_low,eps,tau,sweeps)
+  File "HMC_finetuning.py", line 89, in run_scalar_MH
+    catch, phi = scalar_HMC_step(phi,lamb,kappa,eps,tau)
+  File "HMC_finetuning.py", line 70, in scalar_HMC_step
+    phi_new, pi_new, phi_old, pi_old = leapfrog(phi,pi,eps,tau,kappa, lamb)
+  File "HMC_finetuning.py", line 58, in leapfrog
+    for _ in range(tau):
+TypeError: 'numpy.float64' object cannot be interpreted as an integer

@@ -1,0 +1,36 @@
+0it [00:00, ?it/s]1it [00:09,  9.17s/it]1it [00:09,  9.17s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [02:02<20:21, 122.12s/it] 18%|█▊        | 2/11 [04:05<18:22, 122.49s/it] 27%|██▋       | 3/11 [06:58<18:20, 137.56s/it] 36%|███▋      | 4/11 [10:43<19:06, 163.86s/it] 45%|████▌     | 5/11 [23:51<35:06, 351.03s/it] 55%|█████▍    | 6/11 [29:20<28:42, 344.47s/it] 64%|██████▎   | 7/11 [38:22<26:54, 403.74s/it] 73%|███████▎  | 8/11 [40:31<16:03, 321.21s/it] 82%|████████▏ | 9/11 [43:33<09:19, 279.53s/it] 91%|█████████ | 10/11 [45:41<03:54, 234.09s/it]100%|██████████| 11/11 [47:52<00:00, 203.21s/it]100%|██████████| 11/11 [47:52<00:00, 261.14s/it]
+delta :  1.7 
+
+eps:  0.12 
+
+results of MH and HMC have already been found -> 1 run of 1 kappa of HMC to get equilibrated state and then heatbath 
+
+determined sweeps needed for equil phase:  8 
+
+Acceptance rate for equilibration phase: 1.0
+Estimated correlation time:  8  using  300  runs to determine as such
+Now going to heathbath 
+
+ 
+ Estimated correlation time:  3  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  4  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  5  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  8  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  30  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  11  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  20  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  4  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  5  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  3  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  3  using  300  sweeps to determine as such

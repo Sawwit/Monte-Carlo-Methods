@@ -1,0 +1,22 @@
+0it [00:00, ?it/s]1it [14:06, 846.84s/it]2it [26:48, 821.37s/it]3it [1:00:32, 1182.13s/it]4it [1:26:44, 1299.09s/it]/software/anaconda3/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/software/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+5it [2:18:04, 1833.42s/it]6it [2:36:30, 1615.23s/it]7it [2:43:01, 1247.69s/it]8it [2:56:46, 1120.92s/it]9it [3:01:46, 874.77s/it] 10it [3:11:08, 780.90s/it]11it [3:14:41, 610.49s/it]11it [3:14:41, 1061.94s/it]
+eps:  0.039999999999999994 
+
+These are server runs that are only meant for HMC, since HB/MH do not go to these lattice sizes.
+determined sweeps needed for equil phase:  40 
+
+Acceptance rate for equilibration phase: 0.8
+Estimated correlation time:  18  using  300  runs to determine as such
+Estimated correlation time:  15  using  300  runs to determine as such
+Estimated correlation time:  44  using  300  runs to determine as such
+Estimated correlation time:  33  using  300  runs to determine as such
+Estimated correlation time:  67  using  300  runs to determine as such
+Estimated correlation time:  23  using  300  runs to determine as such
+Estimated correlation time:  8  using  300  runs to determine as such
+Estimated correlation time:  18  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+Estimated correlation time:  11  using  300  runs to determine as such
+Estimated correlation time:  3  using  300  runs to determine as such

@@ -1,0 +1,1 @@
+0it [00:00, ?it/s]slurmstepd: error: *** JOB 371684 ON cn110 CANCELLED AT 2021-12-22T11:42:29 ***

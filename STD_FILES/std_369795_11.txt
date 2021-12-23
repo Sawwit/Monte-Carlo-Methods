@@ -1,0 +1,6 @@
+0it [00:00, ?it/s]1it [04:45, 285.89s/it]2it [11:22, 319.12s/it]3it [17:05, 326.39s/it]4it [22:49, 331.47s/it]5it [34:46, 447.16s/it]6it [1:05:15, 861.71s/it]7it [1:10:41, 701.15s/it]8it [1:25:17, 753.63s/it]9it [1:29:49, 609.08s/it]10it [1:31:51, 462.80s/it]11it [1:33:02, 345.42s/it]11it [1:33:02, 507.52s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]/software/anaconda3/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/software/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+  9%|▉         | 1/11 [1:34:33<15:45:34, 5673.45s/it] 18%|█▊        | 2/11 [2:41:26<12:56:18, 5175.41s/it] 27%|██▋       | 3/11 [5:10:29<14:00:45, 6305.65s/it]slurmstepd: error: *** JOB 371504 ON cn110 CANCELLED AT 2021-12-22T11:23:32 ***

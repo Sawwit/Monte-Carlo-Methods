@@ -1,0 +1,54 @@
+/home/dvlijmen/monte-carlo-techniques-2021/Project/HMC_scalar.py:51: RuntimeWarning: overflow encountered in power
+  F += 2*phi + 4*lamb*(phi**3) - 4*lamb*phi - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, -1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, -1, axis = 1)
+/home/dvlijmen/monte-carlo-techniques-2021/Project/HMC_scalar.py:43: RuntimeWarning: overflow encountered in square
+  ham_difference = 0.5* np.sum(newpi**2 - pi**2)
+/home/dvlijmen/monte-carlo-techniques-2021/Project/HMC_scalar.py:35: RuntimeWarning: overflow encountered in multiply
+  return lamb*(x*x-1)*(x*x-1)+x*x
+/home/dvlijmen/monte-carlo-techniques-2021/Project/HMC_scalar.py:39: RuntimeWarning: overflow encountered in multiply
+  A = potential_v(phi, lamb) - 2 * kappa * (np.roll(phi, 1, axis = 0) + np.roll(phi, 1, axis = 1) + np.roll(phi, 1, axis = 2) + np.roll(phi, 1, axis = 3)) * phi
+0it [00:00, ?it/s]1it [00:31, 31.48s/it]2it [01:08, 33.17s/it]3it [01:45, 34.30s/it]4it [02:41, 40.91s/it]5it [03:52, 49.74s/it]6it [04:34, 47.60s/it]7it [05:09, 43.63s/it]8it [05:15, 32.57s/it]9it [05:30, 27.31s/it]10it [05:40, 21.97s/it]11it [05:49, 18.23s/it]11it [05:49, 31.82s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [11:20<1:53:22, 680.29s/it] 18%|█▊        | 2/11 [19:02<1:32:14, 614.90s/it] 27%|██▋       | 3/11 [25:41<1:13:19, 549.97s/it] 36%|███▋      | 4/11 [43:00<1:21:17, 696.81s/it] 45%|████▌     | 5/11 [56:34<1:13:11, 731.86s/it] 55%|█████▍    | 6/11 [1:03:14<52:41, 632.32s/it] 64%|██████▎   | 7/11 [1:07:14<34:19, 514.75s/it] 73%|███████▎  | 8/11 [1:10:09<20:38, 412.85s/it] 82%|████████▏ | 9/11 [1:14:11<12:03, 361.54s/it] 91%|█████████ | 10/11 [1:16:02<04:46, 286.48s/it]100%|██████████| 11/11 [1:18:27<00:00, 243.85s/it]100%|██████████| 11/11 [1:18:27<00:00, 427.93s/it]
+delta :  1.3 
+
+eps:  0.09 
+
+Starting with HMC: 
+
+determined sweeps needed for equil phase:  8 
+
+Acceptance rate for equilibration phase: 0.875
+Estimated correlation time:  22  using  300  runs to determine as such
+Estimated correlation time:  25  using  300  runs to determine as such
+Estimated correlation time:  26  using  300  runs to determine as such
+Estimated correlation time:  39  using  300  runs to determine as such
+Estimated correlation time:  50  using  300  runs to determine as such
+Estimated correlation time:  29  using  300  runs to determine as such
+Estimated correlation time:  24  using  300  runs to determine as such
+Estimated correlation time:  3  using  300  runs to determine as such
+Estimated correlation time:  9  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+Estimated correlation time:  6  using  300  runs to determine as such
+HMC done. Going to Heatbath Algorithm: 
+
+ 
+ Estimated correlation time:  41  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  28  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  23  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  64  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  50  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  23  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  13  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  10  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  13  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  5  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  7  using  300  sweeps to determine as such

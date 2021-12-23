@@ -1,0 +1,541 @@
+
+ Finetuning process for width:  3 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ values found; eps:  0.11  tau :  9.0 . For width:  3 and Lambda:  1.0
+
+ Finetuning process for width:  3 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ 10  Finetuning step
+
+ 11  Finetuning step
+
+ Finetuning process for width:  3 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  3 and Lambda:  2.0
+
+ Finetuning process for width:  4 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  4 and Lambda:  1.0
+
+ Finetuning process for width:  4 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  4 and Lambda:  1.5
+
+ Finetuning process for width:  4 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  4 and Lambda:  2.0
+
+ Finetuning process for width:  5 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  5 and Lambda:  1.0
+
+ Finetuning process for width:  5 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  5 and Lambda:  1.5
+
+ Finetuning process for width:  5 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  5 and Lambda:  2.0
+
+ Finetuning process for width:  6 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  6 and Lambda:  1.0
+
+ Finetuning process for width:  6 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  6 and Lambda:  1.5
+
+ Finetuning process for width:  6 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  6 and Lambda:  2.0
+
+ Finetuning process for width:  7 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  7 and Lambda:  1.0
+
+ Finetuning process for width:  7 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  7 and Lambda:  1.5
+
+ Finetuning process for width:  7 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  7 and Lambda:  2.0
+
+ Finetuning process for width:  8 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  8 and Lambda:  1.0
+
+ Finetuning process for width:  8 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  8 and Lambda:  1.5
+
+ Finetuning process for width:  8 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ values found; eps:  0.12  tau :  8 . For width:  8 and Lambda:  2.0
+
+ Finetuning process for width:  9 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  9 and Lambda:  1.0
+
+ Finetuning process for width:  9 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ values found; eps:  0.11  tau :  9.0 . For width:  9 and Lambda:  1.5
+
+ Finetuning process for width:  9 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  9 and Lambda:  2.0
+
+ Finetuning process for width:  10 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ values found; eps:  0.1  tau :  10.0 . For width:  10 and Lambda:  1.0
+
+ Finetuning process for width:  10 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ values found; eps:  0.1  tau :  10.0 . For width:  10 and Lambda:  1.5
+
+ Finetuning process for width:  10 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  10 and Lambda:  2.0
+
+ Finetuning process for width:  11 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ values found; eps:  0.07  tau :  14 . For width:  11 and Lambda:  1.0
+
+ Finetuning process for width:  11 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ values found; eps:  0.08  tau :  13.0 . For width:  11 and Lambda:  1.5
+
+ Finetuning process for width:  11 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  11 and Lambda:  2.0
+
+ Finetuning process for width:  12 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ values found; eps:  0.08  tau :  13.0 . For width:  12 and Lambda:  1.0
+
+ Finetuning process for width:  12 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ values found; eps:  0.06  tau :  17.0 . For width:  12 and Lambda:  1.5
+
+ Finetuning process for width:  12 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  12 and Lambda:  2.0
+
+ Finetuning process for width:  13 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ values found; eps:  0.08  tau :  13.0 . For width:  13 and Lambda:  1.0
+
+ Finetuning process for width:  13 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ values found; eps:  0.05  tau :  20.0 . For width:  13 and Lambda:  1.5
+
+ Finetuning process for width:  13 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  13 and Lambda:  2.0
+
+ Finetuning process for width:  14 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ values found; eps:  0.05  tau :  20.0 . For width:  14 and Lambda:  1.0
+
+ Finetuning process for width:  14 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ values found; eps:  0.04  tau :  25.0 . For width:  14 and Lambda:  1.5
+
+ Finetuning process for width:  14 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  14 and Lambda:  2.0
+
+ Finetuning process for width:  15 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ values found; eps:  0.06  tau :  17.0 . For width:  15 and Lambda:  1.0
+
+ Finetuning process for width:  15 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ values found; eps:  0.04  tau :  25.0 . For width:  15 and Lambda:  1.5
+
+ Finetuning process for width:  15 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  15 and Lambda:  2.0
+
+ Finetuning process for width:  16 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ values found; eps:  0.05  tau :  20.0 . For width:  16 and Lambda:  1.0
+
+ Finetuning process for width:  16 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ values found; eps:  0.04  tau :  25.0 . For width:  16 and Lambda:  1.5
+
+ Finetuning process for width:  16 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  16 and Lambda:  2.0
+
+ Finetuning process for width:  17 and Lambda:  1.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ values found; eps:  0.04  tau :  25.0 . For width:  17 and Lambda:  1.0
+
+ Finetuning process for width:  17 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ 6  Finetuning step
+
+ 7  Finetuning step
+
+ 8  Finetuning step
+
+ 9  Finetuning step
+
+ 10  Finetuning step
+
+ values found; eps:  0.03  tau :  33.0 . For width:  17 and Lambda:  1.5
+
+ Finetuning process for width:  17 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  17 and Lambda:  2.0
+[(3, 1.0, 0.11, 9.0), (3, 2.0, 0.12, 8), (4, 1.0, 0.12, 8), (4, 1.5, 0.12, 8), (4, 2.0, 0.12, 8), (5, 1.0, 0.12, 8), (5, 1.5, 0.12, 8), (5, 2.0, 0.12, 8), (6, 1.0, 0.12, 8), (6, 1.5, 0.12, 8), (6, 2.0, 0.12, 8), (7, 1.0, 0.12, 8), (7, 1.5, 0.12, 8), (7, 2.0, 0.12, 8), (8, 1.0, 0.12, 8), (8, 1.5, 0.12, 8.0), (8, 2.0, 0.12, 8), (9, 1.0, 0.12, 8.0), (9, 1.5, 0.11, 9.0), (9, 2.0, 0.12, 8.0), (10, 1.0, 0.1, 10.0), (10, 1.5, 0.1, 10.0), (10, 2.0, 0.12, 8.0), (11, 1.0, 0.07, 14), (11, 1.5, 0.08, 13.0), (11, 2.0, 0.12, 8.0), (12, 1.0, 0.08, 13.0), (12, 1.5, 0.06, 17.0), (12, 2.0, 0.12, 8.0), (13, 1.0, 0.08, 13.0), (13, 1.5, 0.05, 20.0), (13, 2.0, 0.12, 8.0), (14, 1.0, 0.05, 20.0), (14, 1.5, 0.04, 25.0), (14, 2.0, 0.12, 8.0), (15, 1.0, 0.06, 17.0), (15, 1.5, 0.04, 25.0), (15, 2.0, 0.12, 8.0), (16, 1.0, 0.05, 20.0), (16, 1.5, 0.04, 25.0), (16, 2.0, 0.12, 8.0), (17, 1.0, 0.04, 25.0), (17, 1.5, 0.03, 33.0), (17, 2.0, 0.12, 8.0)]

@@ -1,0 +1,52 @@
+/home/dvlijmen/monte-carlo-techniques-2021/Project/HMC_scalar.py:43: RuntimeWarning: overflow encountered in square
+  ham_difference = 0.5* np.sum(newpi**2 - pi**2)
+0it [00:00, ?it/s]1it [01:53, 113.23s/it]2it [03:27, 107.48s/it]3it [04:46, 99.11s/it] 4it [06:16, 96.16s/it]5it [08:58, 115.92s/it]6it [09:48, 96.30s/it] 7it [10:14, 75.28s/it]8it [10:31, 57.68s/it]9it [10:48, 45.36s/it]10it [11:57, 52.64s/it]11it [12:14, 41.83s/it]11it [12:14, 66.76s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [12:26<2:04:21, 746.15s/it] 18%|█▊        | 2/11 [31:34<2:10:02, 866.92s/it] 27%|██▋       | 3/11 [57:18<2:22:40, 1070.06s/it] 36%|███▋      | 4/11 [1:36:19<2:49:19, 1451.30s/it]/software/anaconda3/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/software/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+ 45%|████▌     | 5/11 [2:30:38<3:19:21, 1993.66s/it] 55%|█████▍    | 6/11 [2:48:10<2:22:34, 1710.95s/it] 64%|██████▎   | 7/11 [2:59:02<1:32:53, 1393.43s/it] 73%|███████▎  | 8/11 [3:08:15<57:03, 1141.31s/it]   82%|████████▏ | 9/11 [3:14:06<30:08, 904.21s/it]  91%|█████████ | 10/11 [3:25:02<13:49, 829.64s/it]100%|██████████| 11/11 [3:32:32<00:00, 715.85s/it]100%|██████████| 11/11 [3:32:32<00:00, 1159.34s/it]
+delta :  1.3 
+
+eps:  0.07999999999999999 
+
+Starting with HMC: 
+
+determined sweeps needed for equil phase:  24 
+
+Acceptance rate for equilibration phase: 0.75
+Estimated correlation time:  45  using  300  runs to determine as such
+Estimated correlation time:  37  using  300  runs to determine as such
+Estimated correlation time:  31  using  300  runs to determine as such
+Estimated correlation time:  35  using  300  runs to determine as such
+Estimated correlation time:  66  using  300  runs to determine as such
+Estimated correlation time:  20  using  300  runs to determine as such
+Estimated correlation time:  10  using  300  runs to determine as such
+Estimated correlation time:  6  using  300  runs to determine as such
+Estimated correlation time:  6  using  300  runs to determine as such
+Estimated correlation time:  28  using  300  runs to determine as such
+Estimated correlation time:  6  using  300  runs to determine as such
+HMC done. Going to Heatbath Algorithm: 
+
+ 
+ Estimated correlation time:  13  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  22  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  29  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  45  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  64  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  19  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  12  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  10  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  6  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  12  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  7  using  300  sweeps to determine as such

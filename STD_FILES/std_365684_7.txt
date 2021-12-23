@@ -1,0 +1,50 @@
+0it [00:00, ?it/s]1it [00:55, 55.48s/it]2it [01:51, 55.70s/it]3it [03:00, 59.66s/it]4it [04:22, 66.21s/it]5it [05:30, 66.99s/it]6it [08:33, 101.59s/it]7it [15:24, 194.61s/it]8it [17:32, 174.37s/it]9it [18:25, 138.16s/it]10it [19:07, 109.14s/it]11it [19:36, 85.20s/it] 11it [19:36, 106.95s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [22:15<3:42:30, 1335.05s/it] 18%|█▊        | 2/11 [40:29<3:09:27, 1263.01s/it] 27%|██▋       | 3/11 [58:42<2:41:34, 1211.76s/it] 36%|███▋      | 4/11 [1:25:14<2:34:40, 1325.80s/it]/software/anaconda3/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/software/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+ 45%|████▌     | 5/11 [2:16:52<3:05:45, 1857.53s/it] 55%|█████▍    | 6/11 [4:43:24<5:28:09, 3937.97s/it] 64%|██████▎   | 7/11 [7:04:24<5:52:57, 5294.46s/it] 73%|███████▎  | 8/11 [7:26:55<3:25:34, 4111.43s/it] 82%|████████▏ | 9/11 [7:41:02<1:44:24, 3132.07s/it] 91%|█████████ | 10/11 [7:55:12<40:47, 2447.50s/it] 100%|██████████| 11/11 [8:09:22<00:00, 1968.27s/it]100%|██████████| 11/11 [8:09:22<00:00, 2669.31s/it]
+delta :  1.9 
+
+eps:  0.06999999999999999 
+
+Starting with HMC: 
+
+determined sweeps needed for equil phase:  13 
+
+Acceptance rate for equilibration phase: 1.0
+Estimated correlation time:  7  using  300  runs to determine as such
+Estimated correlation time:  8  using  300  runs to determine as such
+Estimated correlation time:  9  using  300  runs to determine as such
+Estimated correlation time:  12  using  300  runs to determine as such
+Estimated correlation time:  9  using  300  runs to determine as such
+Estimated correlation time:  28  using  300  runs to determine as such
+Estimated correlation time:  65  using  300  runs to determine as such
+Estimated correlation time:  20  using  300  runs to determine as such
+Estimated correlation time:  7  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+Estimated correlation time:  3  using  300  runs to determine as such
+HMC done. Going to Heatbath Algorithm: 
+
+ 
+ Estimated correlation time:  9  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  8  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  7  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  11  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  23  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  70  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  67  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  10  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  6  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  6  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  6  using  300  sweeps to determine as such

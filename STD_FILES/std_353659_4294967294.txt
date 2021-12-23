@@ -1,0 +1,25 @@
+
+ Finetuning process for width:  10 and Lambda:  1.5
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ 2  Finetuning step
+
+ 3  Finetuning step
+
+ 4  Finetuning step
+
+ 5  Finetuning step
+
+ values found; eps:  0.07  tau :  14 . For width:  10 and Lambda:  1.5
+
+ Finetuning process for width:  10 and Lambda:  2.0
+
+ 0  Finetuning step
+
+ 1  Finetuning step
+
+ values found; eps:  0.12  tau :  8.0 . For width:  10 and Lambda:  2.0
+[(10, 1.5, 0.07, 14), (10, 2.0, 0.12, 8.0)]
