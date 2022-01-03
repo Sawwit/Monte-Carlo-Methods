@@ -1,0 +1,6 @@
+- equil fase wss niet want geen harde data en toch gedaan met HMC
+- Correlation time plotjes
+- Plotje die er nu is. Goed duidelijk maken.
+- runtime tabellen
+- relatieve tabellen runtime
+- 
