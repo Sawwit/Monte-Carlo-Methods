@@ -1,6 +1,8 @@
 - equil fase wss niet want geen harde data en toch gedaan met HMC
-- Correlation time plotjes
-- Plotje die er nu is. Goed duidelijk maken.
-- runtime tabellen
-- relatieve tabellen runtime
-- 
+- Correlation time plotjes (DONE)
+- Plotje die er nu is. Goed duidelijk maken. (DONE)
+- runtime tabellen (DONE)
+- relatieve tabellen runtime (DONE)
+- gefinetuned parameters (DONE)
+- hoogste lattice size die we hadden (Doen wanneer we hier zijn met het verslag)
+- acceptance rates (DONE)
