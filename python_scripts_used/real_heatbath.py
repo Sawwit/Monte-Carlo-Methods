@@ -78,14 +78,14 @@ def find_correlation_time(x,tmax):
     return np.where(autocov < np.exp(-1)*autocov[0])[0][0]
 
 
-lamb = 1.5
-kappas = np.linspace(0.08,0.18,11)
-width = 4
-num_sites = width**4
-equil_sweeps = 800
-measure_sweeps = 2
-measurements = 400
-tmax = 60
+# lamb = 1.5
+# kappas = np.linspace(0.08,0.18,11)
+# width = 4
+# num_sites = width**4
+# equil_sweeps = 800
+# measure_sweeps = 2
+# measurements = 400
+# tmax = 60
 def real_heatbath(phi_state, lamb, kappa_init, kappa_final, kappa_amount, measurements, output_time, output_filename, stopping_time, args):
     kappas = np.linspace(kappa_init, kappa_final, kappa_amount)
     width = phi_state.shape[0]
