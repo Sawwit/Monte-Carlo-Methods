@@ -333,7 +333,58 @@ def finetuned_values_table():
     print(tabulate(new_eps, tablefmt= "latex", floatfmt=".2f"))
     print("Taus: \n")
     print(tabulate(new_taus, tablefmt= "latex", floatfmt=".0f"))
+
+def detailed_balance_check(bigger_error = 1):
+    c = bigger_error
+    #Detailed balance is checked for the highest value that all three methods have full calculations for.
+    kappas = HMC_DATA[1,1,:,0]
+    HMC_values_0 = HMC_DATA[0,7,:,2]
+    HMC_errors_0 = c * HMC_DATA[0,7,:,3]
+    HEATBATH_values_0 = HEATBATH_DATA[0,7,:,1]
+    HEATBATH_errors_0 = c * HEATBATH_DATA[0,7,:,2]
+    MH_values_0 = MH_DATA[0,7,:,2]
+    MH_errors_0 = c * MH_DATA[0,7,:,3]
+
+    HMC_values_1 = HMC_DATA[1,7,:,2]
+    HMC_errors_1 = c * HMC_DATA[1,7,:,3]
+    HEATBATH_values_1 = HEATBATH_DATA[1,7,:,1]
+    HEATBATH_errors_1 = c * HEATBATH_DATA[1,7,:,2]
+    MH_values_1 = MH_DATA[1,7,:,2]
+    MH_errors_1 = c * MH_DATA[1,7,:,3]
+
+    HMC_values_2 = HMC_DATA[2,7,:,2]
+    HMC_errors_2 = c * HMC_DATA[2,7,:,3]
+    HEATBATH_values_2 = HEATBATH_DATA[2,7,:,1]
+    HEATBATH_errors_2 = c * HEATBATH_DATA[2,7,:,2]
+    MH_values_2 = MH_DATA[2,7,:,2]
+    MH_errors_2 = c * MH_DATA[2,7,:,3]
+
+    fig, axs = plt.subplots(1,3)
+    axs[0].errorbar(kappas,HMC_values_0,yerr=HMC_errors_0,fmt='-og')
+    axs[0].errorbar(kappas,HEATBATH_values_0,yerr=HEATBATH_errors_0,fmt='-or')
+    axs[0].errorbar(kappas,MH_values_0,yerr=MH_errors_0,fmt='-ob')
+    axs[0].set_ylabel("|m|")
+    axs[0].set_xlabel(r"$\kappa$")
+    axs[0].legend(["HMC", "heatbath","MH"])
+
+    axs[1].errorbar(kappas,HMC_values_1,yerr=HMC_errors_1,fmt='-og')
+    axs[1].errorbar(kappas,HEATBATH_values_1,yerr=HEATBATH_errors_1,fmt='-or')
+    axs[1].errorbar(kappas,MH_values_1,yerr=MH_errors_1,fmt='-ob')
+    axs[1].set_ylabel("|m|")
+    axs[1].set_xlabel(r"$\kappa$")
+    axs[1].legend(["HMC", "heatbath","MH"])
+
+    axs[2].errorbar(kappas,HMC_values_2,yerr=HMC_errors_2,fmt='-og')
+    axs[2].errorbar(kappas,HEATBATH_values_2,yerr=HEATBATH_errors_2,fmt='-or')
+    axs[2].errorbar(kappas,MH_values_2,yerr=MH_errors_2,fmt='-ob')
+    axs[2].set_ylabel("|m|")
+    axs[2].set_xlabel(r"$\kappa$")
+    axs[2].legend(["HMC", "heatbath","MH"])
+
+
+
+    plt.suptitle(r"Mean Field value for Lattice Size $10^4$")
+    plt.show()
+
     
-
-
-acceptance_tabellen(2)
+detailed_balance_check(bigger_error=10)
