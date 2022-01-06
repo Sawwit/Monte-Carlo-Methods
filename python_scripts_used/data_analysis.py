@@ -387,4 +387,4 @@ def detailed_balance_check(bigger_error = 1):
     plt.show()
 
     
-detailed_balance_check(bigger_error=10)
+detailed_balance_check(bigger_error=1)
