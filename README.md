@@ -34,3 +34,8 @@ This folder contains the shell scripts that were used to run the python code on 
 This folder contains some files that were used as notes to remember things during the project. No important information is present within this folder. 
 
 
+# Owners
+
+Stefan de Wit
+Dirren van Vlijmen
+
