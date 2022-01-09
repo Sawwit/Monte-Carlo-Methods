@@ -95,6 +95,13 @@ def main():
     print("These are server runs that are only meant for HMC, since HB/MH do not go to these lattice sizes.")
     phi_state = HMC_scalar(width, args.ki, args.kf, args.ka, lamb, eps, tau, measurements, args.o, "HMC_" + output_filename, args)
 
+# Note that this file has been changed along the way. For example the way as presented in the comments within the main function is the way the the heatbath algortihm is run. The if condition regarding with is superficial and not even used. 
+# This method of running the heatbath algorithm is chosen since it was run after the runs for HMC and MH. The code not within comments depcicts how the last lattice sizes of the HMC implementation were run. Since the code w
+# was cut off for both MH and HMC after the lattice sizes were deemed inpraactical for the former. The way MH and HMC were run, were outside of the filename exactly similar to above within comments, apart from the fact that the runs of HMC were done for all 
+# kappa values instead of only the first naturally.
+
+
+
 
 if __name__ == '__main__':
     main()
