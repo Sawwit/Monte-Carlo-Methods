@@ -32,3 +32,7 @@ This file contains the finetuning procedure of the MH method. Again note the nam
 ### real_heatbath.py
 
 This file contains the implemenation of the heatbath algorithm of the assignments. 
+
+### The JSON files
+
+The JSON files within this subfolder are the output of the fine tuning procedures, they are present within this folder since the implementations (within cluster.py) use them, and originally assumed that these JSON files were within the same folder
