@@ -1,5 +1,11 @@
 # Monte-Carlo-Methods
-This repository is used as the shared folder for data storage and code creation for the project of the Monte Carlo Methods course of Radboud University Nijmegen. Below a short description of the contents of each subfolder will follow
+This repository is used as the shared folder for data storage and code creation for the project of the Monte Carlo Methods course of Radboud University Nijmegen. Below a short description of the contents of each subfolder will follow. 
+
+First a note regarding some errors within the naming of some files. This error arose due to some misunderstanding of us between which method was which. This lead to the MH algorithm within the naming of the scripts and the output being called heatbath. Where this was the case, the corresponding scripts or data for the actual heatbath method are called real_heatbath. Thus, again for the scripts and outputs:
+
+For the MH method: see heatbath...
+
+For the Heatbath method: see real_heatbath...
 
 ### The _DATA folders
 
