@@ -218,7 +218,7 @@ def plot_all_lamb_run_time():
     plt.show()
 
 def correlation_time_plotjes(width):
-    fig, axs = plt.subplots(1,3)
+    fig, axs = plt.subplots(1,3, constrained_layout = True)
 
     kappas = np.linspace(0.08,0.18,11)
 
@@ -254,7 +254,7 @@ def correlation_time_plotjes(width):
     axs[2].legend()
     axs[2].set_xlabel(r"$\kappa$")
     axs[2].set_ylabel("Correlation time (sweeps)")
-    plt.suptitle("Correlation times with lattice size: " + str(width))
+    plt.suptitle(r"Correlation times with lattice size:${}^4$".format(width))
 
     plt.show()
 
@@ -276,8 +276,6 @@ def acceptance_tabellen(lamb):
 def vergelijker():
     widths = np.linspace(3,12,10).astype(int)
     lambdas = np.linspace(0,2,3).astype(int)
-    print(widths)
-    print(lambdas)
 
     tabel = np.empty((3,10))
 
@@ -334,32 +332,32 @@ def finetuned_values_table():
     print("Taus: \n")
     print(tabulate(new_taus, tablefmt= "latex", floatfmt=".0f"))
 
-def detailed_balance_check(bigger_error = 1):
+def detailed_balance_check(width, bigger_error = 1):
     c = bigger_error
     #Detailed balance is checked for the highest value that all three methods have full calculations for.
     kappas = HMC_DATA[1,1,:,0]
-    HMC_values_0 = HMC_DATA[0,7,:,2]
-    HMC_errors_0 = c * HMC_DATA[0,7,:,3]
-    HEATBATH_values_0 = HEATBATH_DATA[0,7,:,1]
-    HEATBATH_errors_0 = c * HEATBATH_DATA[0,7,:,2]
-    MH_values_0 = MH_DATA[0,7,:,2]
-    MH_errors_0 = c * MH_DATA[0,7,:,3]
+    HMC_values_0 = HMC_DATA[0,(width -3),:,2]
+    HMC_errors_0 = c * HMC_DATA[0,(width -3),:,3]
+    HEATBATH_values_0 = HEATBATH_DATA[0,(width -3),:,1]
+    HEATBATH_errors_0 = c * HEATBATH_DATA[0,(width -3),:,2]
+    MH_values_0 = MH_DATA[0,(width -3),:,2]
+    MH_errors_0 = c * MH_DATA[0,(width -3),:,3]
 
-    HMC_values_1 = HMC_DATA[1,7,:,2]
-    HMC_errors_1 = c * HMC_DATA[1,7,:,3]
-    HEATBATH_values_1 = HEATBATH_DATA[1,7,:,1]
-    HEATBATH_errors_1 = c * HEATBATH_DATA[1,7,:,2]
-    MH_values_1 = MH_DATA[1,7,:,2]
-    MH_errors_1 = c * MH_DATA[1,7,:,3]
+    HMC_values_1 = HMC_DATA[1,(width -3),:,2]
+    HMC_errors_1 = c * HMC_DATA[1,(width -3),:,3]
+    HEATBATH_values_1 = HEATBATH_DATA[1,(width -3),:,1]
+    HEATBATH_errors_1 = c * HEATBATH_DATA[1,(width -3),:,2]
+    MH_values_1 = MH_DATA[1,(width -3),:,2]
+    MH_errors_1 = c * MH_DATA[1,(width -3),:,3]
 
-    HMC_values_2 = HMC_DATA[2,7,:,2]
-    HMC_errors_2 = c * HMC_DATA[2,7,:,3]
-    HEATBATH_values_2 = HEATBATH_DATA[2,7,:,1]
-    HEATBATH_errors_2 = c * HEATBATH_DATA[2,7,:,2]
-    MH_values_2 = MH_DATA[2,7,:,2]
-    MH_errors_2 = c * MH_DATA[2,7,:,3]
+    HMC_values_2 = HMC_DATA[2,(width -3),:,2]
+    HMC_errors_2 = c * HMC_DATA[2,(width -3),:,3]
+    HEATBATH_values_2 = HEATBATH_DATA[2,(width -3),:,1]
+    HEATBATH_errors_2 = c * HEATBATH_DATA[2,(width -3),:,2]
+    MH_values_2 = MH_DATA[2,(width -3),:,2]
+    MH_errors_2 = c * MH_DATA[2,(width -3),:,3]
 
-    fig, axs = plt.subplots(1,3)
+    fig, axs = plt.subplots(1,3, constrained_layout = True)
     axs[0].errorbar(kappas,HMC_values_0,yerr=HMC_errors_0,fmt='-og')
     axs[0].errorbar(kappas,HEATBATH_values_0,yerr=HEATBATH_errors_0,fmt='-or')
     axs[0].errorbar(kappas,MH_values_0,yerr=MH_errors_0,fmt='-ob')
@@ -383,8 +381,7 @@ def detailed_balance_check(bigger_error = 1):
 
 
 
-    plt.suptitle(r"Mean Field value for Lattice Size $10^4$")
+    plt.suptitle(r"Mean Field value for Lattice Size ${}^4$".format(width))
     plt.show()
 
     
-detailed_balance_check(bigger_error=1)
