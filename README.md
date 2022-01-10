@@ -7,7 +7,7 @@ For the MH method: see heatbath...
 
 For the Heatbath method: see real_heatbath...
 
-Further please note the requirements.txt
+Further please note the requirements.txt for the needed python modules
 
 ### The _DATA folders
 
