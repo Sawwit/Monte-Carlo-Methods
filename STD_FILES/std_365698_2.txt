@@ -1,0 +1,46 @@
+0it [00:00, ?it/s]1it [00:09,  9.05s/it]2it [00:30, 12.79s/it]3it [00:50, 14.80s/it]4it [01:30, 22.37s/it]5it [01:57, 23.97s/it]6it [03:00, 35.52s/it]7it [03:15, 29.46s/it]8it [03:22, 22.76s/it]9it [03:29, 18.06s/it]10it [03:36, 14.79s/it]11it [03:44, 12.49s/it]11it [03:44, 20.37s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [01:07<11:12, 67.24s/it] 18%|█▊        | 2/11 [02:44<11:26, 76.32s/it] 27%|██▋       | 3/11 [04:53<12:17, 92.16s/it] 36%|███▋      | 4/11 [09:49<17:53, 153.35s/it] 45%|████▌     | 5/11 [13:14<16:52, 168.80s/it] 55%|█████▍    | 6/11 [22:03<23:03, 276.72s/it] 64%|██████▎   | 7/11 [23:57<15:12, 228.02s/it] 73%|███████▎  | 8/11 [25:37<09:28, 189.49s/it] 82%|████████▏ | 9/11 [27:16<05:24, 162.31s/it] 91%|█████████ | 10/11 [28:55<02:23, 143.52s/it]100%|██████████| 11/11 [30:19<00:00, 125.56s/it]100%|██████████| 11/11 [30:19<00:00, 165.41s/it]
+delta :  1.5 
+
+eps:  0.11 
+
+Starting with HMC: 
+
+determined sweeps needed for equil phase:  11 
+
+Acceptance rate for equilibration phase: 0.7272727272727273
+Estimated correlation time:  8  using  300  runs to determine as such
+Estimated correlation time:  19  using  300  runs to determine as such
+Estimated correlation time:  17  using  300  runs to determine as such
+Estimated correlation time:  37  using  300  runs to determine as such
+Estimated correlation time:  25  using  300  runs to determine as such
+Estimated correlation time:  59  using  300  runs to determine as such
+Estimated correlation time:  13  using  300  runs to determine as such
+Estimated correlation time:  6  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+Estimated correlation time:  5  using  300  runs to determine as such
+HMC done. Going to Heatbath Algorithm: 
+
+ 
+ Estimated correlation time:  8  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  11  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  15  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  37  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  26  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  68  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  14  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  12  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  11  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  12  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  10  using  300  sweeps to determine as such

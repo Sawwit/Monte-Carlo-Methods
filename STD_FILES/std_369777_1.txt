@@ -1,0 +1,2 @@
+0it [00:00, ?it/s]1it [00:04,  4.07s/it]1it [00:04,  4.07s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]slurmstepd: error: *** JOB 369779 ON cn110 CANCELLED AT 2021-12-21T14:18:39 ***

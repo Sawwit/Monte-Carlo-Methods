@@ -1,0 +1,3 @@
+usage: Cluster.py [-h] [-w W] [-ki KI] [-kf KF] [-ka KA] [-l L] [-o O] [-m M]
+                  [-f F]
+Cluster.py: error: argument -w: expected one argument

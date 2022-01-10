@@ -1,0 +1,40 @@
+0it [00:00, ?it/s]1it [00:30, 30.20s/it]1it [00:30, 30.20s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]  9%|▉         | 1/11 [10:31<1:45:12, 631.25s/it] 18%|█▊        | 2/11 [25:23<1:46:26, 709.59s/it] 27%|██▋       | 3/11 [44:37<1:52:23, 842.94s/it] 36%|███▋      | 4/11 [1:03:56<1:49:23, 937.68s/it] 45%|████▌     | 5/11 [1:27:49<1:48:38, 1086.39s/it]/software/anaconda3/lib/python3.7/site-packages/numpy/core/fromnumeric.py:3335: RuntimeWarning: Mean of empty slice.
+  out=out, **kwargs)
+/software/anaconda3/lib/python3.7/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+ 55%|█████▍    | 6/11 [2:18:19<2:19:07, 1669.44s/it] 64%|██████▎   | 7/11 [3:23:26<2:36:02, 2340.60s/it] 73%|███████▎  | 8/11 [3:38:55<1:35:51, 1917.04s/it] 82%|████████▏ | 9/11 [3:50:01<51:23, 1541.70s/it]   91%|█████████ | 10/11 [4:01:15<21:21, 1281.57s/it]100%|██████████| 11/11 [4:12:30<00:00, 1099.62s/it]100%|██████████| 11/11 [4:12:30<00:00, 1377.34s/it]
+delta :  1.9 
+
+eps:  0.07999999999999999 
+
+results of MH and HMC have already been found -> 1 run of 1 kappa of HMC to get equilibrated state and then heatbath 
+
+determined sweeps needed for equil phase:  9 
+
+Acceptance rate for equilibration phase: 1.0
+Estimated correlation time:  6  using  300  runs to determine as such
+Now going to heathbath 
+
+ 
+ Estimated correlation time:  4  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  5  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  7  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  7  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  9  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  22  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  27  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  5  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  4  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  3  using  300  sweeps to determine as such
+ 
+ Estimated correlation time:  3  using  300  sweeps to determine as such
