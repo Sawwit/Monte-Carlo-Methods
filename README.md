@@ -7,6 +7,8 @@ For the MH method: see heatbath...
 
 For the Heatbath method: see real_heatbath...
 
+Further please note the requirements.txt
+
 ### The _DATA folders
 
 These folders contain the output of the implemenation within JSON files. With of course the first part  of the subfolder mentioning from which implementation the data originates.
